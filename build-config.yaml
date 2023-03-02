@@ -14,7 +14,7 @@ spec:
   source:
     git:
       ref: main
-      uri: 'https://github.com/shailendra-repo/openshift4.git'
+      uri: 'https://github.com/shailendra-repo/openshift-docker.git'
     type: Git
   strategy:
     dockerStrategy:
