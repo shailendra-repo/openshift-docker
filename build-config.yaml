@@ -1,0 +1,35 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: webapp-github-docker
+  name: webapp-github-docker
+  namespace: webapp-github
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'webapp-github-docker:latest'
+  runPolicy: Serial
+  source:
+    git:
+      ref: main
+      uri: 'https://github.com/shailendra-repo/openshift4.git'
+    type: Git
+  strategy:
+    dockerStrategy:
+    type: Docker
+  triggers:
+    - generic:
+        secret: 7a7d72be86f92d21
+      type: Generic
+    - github:
+        secret: 928ebc8f60c6194a
+      type: GitHub
+    - imageChange:
+        lastTriggeredImageID: >-
+          172.30.1.1:5000/openshift/python@sha256:ac50754646f0d37616515fb30467d8743fb12954260ec36c9ecb5a94499447e0
+      type: ImageChange
+    - type: ConfigChange
+status:
+  lastVersion: 1
