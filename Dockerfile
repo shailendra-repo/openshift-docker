@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update && apt-get install -y python python-pip
-RUN pip install --upgrade pip==22.3.1
+RUN pip install --upgrade pip==22.3.1 setuptools wheel
 RUN pip install flask
 
 COPY app.py /opt/
